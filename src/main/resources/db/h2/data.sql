@@ -51,3 +51,10 @@ INSERT INTO visits VALUES (default, 7, '2013-01-01', 'rabies shot');
 INSERT INTO visits VALUES (default, 8, '2013-01-02', 'rabies shot');
 INSERT INTO visits VALUES (default, 8, '2013-01-03', 'neutered');
 INSERT INTO visits VALUES (default, 7, '2013-01-04', 'spayed');
+
+INSERT INTO pet_Treatments VALUES (default, 1, 1, 100.00, 30.00, '2025-05-07', 1000.30, 'rabies shot' );
+INSERT INTO pet_Treatments VALUES (default, 10, 1, 100.00, 30.00, '2025-06-07', 500.00, 'spayed' );
+INSERT INTO pet_Treatments VALUES (default, 6, 2, 100.00, 30.00, '2025-05-07', 1000.30, 'rabies shot' );
+INSERT INTO pet_Treatments VALUES (default, 6, 1, 100.00, 30.00, '2025-07-07', 500, 'spayed' );
+INSERT INTO pet_Treatments VALUES (default, 8, 2, 100.00, 30.00, '2025-05-07',1000.30, 'rabies shot' );
+INSERT INTO pet_Treatments VALUES (default, 8, 2, 100.00, 30.00, '2025-07-07', 500, 'spayed' );
