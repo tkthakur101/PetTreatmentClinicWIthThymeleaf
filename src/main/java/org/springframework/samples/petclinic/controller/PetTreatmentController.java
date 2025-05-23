@@ -31,6 +31,7 @@ public class PetTreatmentController {
 			petTreatmentDetails.forEach(pet -> System.out.println("owner ID : " + pet.getOwnerId() +
 				" Pet Type ID : " + pet.getPet_type_id() + " Treatment : " + pet.getTreatment() + " Cost : " + pet.getCost()));
 		} catch (Exception e) {
+
 		}
 
 		return ResponseEntity.ok(petTreatmentDetails);
