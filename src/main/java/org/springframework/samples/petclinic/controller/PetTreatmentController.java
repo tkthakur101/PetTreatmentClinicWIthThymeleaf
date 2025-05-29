@@ -97,16 +97,18 @@ public class PetTreatmentController {
 		return ResponseEntity.ok(petTreatmentService.updateTreatmentRecord(id,updatedPetTreatmentDetails));
 	}
 
+
+	// Thymeleaf - update the record
 	@PostMapping("/updateTreatmentRecord/{id}")
 	public String updateTreatmentRecord1(@PathVariable Integer id, @ModelAttribute PetTreatment updatedPetTreatmentDetails) {
-		 petTreatmentService.updateTreatmentRecord(id,updatedPetTreatmentDetails);
+		petTreatmentService.updateTreatmentRecord(id, updatedPetTreatmentDetails);
 		return "redirect:/petTreatment/allTreatmentRecords";
 	}
 
-	// Thymeleaf - update the record
+	// Thymeleaf - open in new page for update the record
 	@GetMapping("/showPetTreatmentDetailsForUpdate/{id}")
 	public String updateForm(@PathVariable(value = "id") Integer id, Model model) {
-		 PetTreatment petTreatment = petTreatmentService.findPetTreatmentRecord(id);
+		PetTreatment petTreatment = petTreatmentService.findPetTreatmentRecord(id);
 		model.addAttribute("petTreatment", petTreatment);
 		return "petTreatment/petTreatmentReportUpdate";
 	}
