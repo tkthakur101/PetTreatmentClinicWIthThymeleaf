@@ -61,9 +61,9 @@
             <span th:text="#{vets}">Veterinarians</span>
           </li>
 
-          <li th:replace="~{::menuItem ('/petTreatment/allTreatmentRecords','pets','veterinarians','th-list',#{petTreatmentDetails})}">
+          <li th:replace="~{::menuItem ('/petTreatment/allTreatmentRecords','pets','petTreatments','th-list',#{petTreatmentDetails})}">
             <span class="fa fa-th-list" aria-hidden="true"></span>
-            <span th:text="#{petTreatmentDetails}">Veterinarians</span>
+            <span th:text="#{petTreatmentDetails}">petTreatments</span>
           </li>
 
           <li
