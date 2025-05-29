@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'pets')}">
+<!--<head>-->
+<!--    <meta charset="ISO-8859-1">-->
+<!--    <title>addPetTreatmentDetails Management System</title>-->
+<!--    <link rel="stylesheet"-->
+<!--          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"-->
+<!--          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"-->
+<!--          crossorigin="anonymous">-->
+<!--</head>-->
+<body>
+<div class="container">
+    <h1>addPetTreatmentDetails Management System</h1>
+    <hr>
+    <h2>Add PetTreatment Details</h2>
+
+    <form action="#" th:action="@{/petTreatment/save}" th:object="${petTreatment}"
+          method="POST">
+        <input type="text" th:field="*{ownerId}" placeholder="PetTreatment ownerId" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{pet_type_id}" placeholder="PetTreatment pet_type_id" class="form-control mb-4 col-4">
+        <input type="number" th:field="*{length_in_cm}" placeholder="PetTreatment length_in_cm" class="form-control mb-4 col-4">
+       <input type="number" th:field="*{weight_kg}" placeholder="PetTreatment weight_kg"  class="form-control mb-4 col-4">
+        <input type="number" th:field="*{cost}" placeholder="PetTreatment cost" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{treatment}" placeholder="PetTreatment treatment" class="form-control mb-4 col-4">
+
+        <button type="submit" class="btn btn-info col-2">Save PetTreatmentDetails</button>
+    </form>
+
+    <hr>
+
+    <a th:href="@{/}"> Back to Employee List</a>
+</div>
+</body>
+</html>

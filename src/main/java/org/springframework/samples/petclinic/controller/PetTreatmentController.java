@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.samples.petclinic.entity.PetTreatment;
 import org.springframework.samples.petclinic.service.PetTreatmentService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class PetTreatmentController {
 	PetTreatmentService petTreatmentService;
 
 	//  ----   Get All the records -----------
-	@GetMapping("/allTreatmentRecords")
+	@GetMapping("/allTreatmentRecords1")
 	public ResponseEntity<List<PetTreatment>> getPetTreatmentDetails() {
 		List<PetTreatment> petTreatmentDetails = new ArrayList<>();
 		try {
@@ -37,10 +38,32 @@ public class PetTreatmentController {
 		return ResponseEntity.ok(petTreatmentDetails);
 	}
 
+	// Thymeleaf - Get all records
+	@GetMapping("/allTreatmentRecords")
+	public String getTreatmentRecords(Model model) {
+		model.addAttribute("allPetTreatmentList", petTreatmentService.getTreatmentDetails());
+		return "petTreatment/petTreatmentDetails";
+	}
+
+	// Thymeleaf - add new record
+	@GetMapping("/addNew")
+	public String addPetTreatmentDetails(Model model)  {
+		PetTreatment petTreatment = new PetTreatment();
+		model.addAttribute("petTreatment", petTreatment);
+		return "petTreatment/addPetTreatmentDetails";
+	}
+
 	//--------  Save the petTreatmentDetails ------
 	@PostMapping("/saveTreatmentDetails")
 	public ResponseEntity<PetTreatment> saveTreatmentDetails(@RequestBody PetTreatment petTreatment) {
 		return ResponseEntity.ok(petTreatmentService.saveTreatmentDetails(petTreatment));
+	}
+
+	// Thymeleaf - Save the record
+	@PostMapping("/save")
+	public String saveTreatmentDetail(@ModelAttribute("petTreatment") PetTreatment petTreatment) {
+		petTreatmentService.saveTreatmentDetails(petTreatment);
+		return "redirect:/petTreatment/allTreatmentRecords";
 	}
 
 	//--------  Find petTreatmentDetails records for Owner ------
@@ -61,10 +84,31 @@ public class PetTreatmentController {
 		petTreatmentService.deleteTreatmentRecord(id);
 	}
 
+	// Thymeleaf - delete the record
+	@GetMapping("/deletePetTreatmentReport/{id}")
+	public String deleteTreatmentRecord1(@PathVariable (value = "id") Integer id) {
+		petTreatmentService.deleteTreatmentRecord(id);
+		return "redirect:/petTreatment/allTreatmentRecords";
+	}
+
 	//--------  Update the petTreatmentRecord based on ID ------
 	@PutMapping("/updateTreatmentRecord/{id}")
 	public ResponseEntity<PetTreatment> updateTreatmentRecord(@PathVariable Integer id, @RequestBody PetTreatment updatedPetTreatmentDetails) {
 		return ResponseEntity.ok(petTreatmentService.updateTreatmentRecord(id,updatedPetTreatmentDetails));
+	}
+
+	@PostMapping("/updateTreatmentRecord/{id}")
+	public String updateTreatmentRecord1(@PathVariable Integer id, @ModelAttribute PetTreatment updatedPetTreatmentDetails) {
+		 petTreatmentService.updateTreatmentRecord(id,updatedPetTreatmentDetails);
+		return "redirect:/petTreatment/allTreatmentRecords";
+	}
+
+	// Thymeleaf - update the record
+	@GetMapping("/showPetTreatmentDetailsForUpdate/{id}")
+	public String updateForm(@PathVariable(value = "id") Integer id, Model model) {
+		 PetTreatment petTreatment = petTreatmentService.findPetTreatmentRecord(id);
+		model.addAttribute("petTreatment", petTreatment);
+		return "petTreatment/petTreatmentReportUpdate";
 	}
 
 	//  Used Spring HATEOAS for get the record based on ID

@@ -47,6 +47,25 @@ public class PetTreatment {
 		this.treatment = treatment;
 	}
 
+	public PetTreatment(Integer id, Integer ownerId, Integer pet_type_id, double length_in_cm, double weight_kg, LocalDate date, double cost, String treatment) {
+		this.id =id;
+		this.ownerId = ownerId;
+		this.pet_type_id = pet_type_id;
+		this.length_in_cm = length_in_cm;
+		this.weight_kg = weight_kg;
+		this.date = date;
+		this.cost = cost;
+		this.treatment = treatment;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Integer getOwnerId() {
 		return ownerId;
 	}
